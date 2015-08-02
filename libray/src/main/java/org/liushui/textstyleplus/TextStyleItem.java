@@ -5,7 +5,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.PixelFormat;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.ColorInt;
+import android.support.annotation.ColorRes;
+import android.support.annotation.DrawableRes;
+import android.support.annotation.IntDef;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -19,6 +24,9 @@ import android.text.style.SubscriptSpan;
 import android.text.style.SuperscriptSpan;
 import android.text.style.UnderlineSpan;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
 /**
  * StyleItem <br/>
  * Created by xiaqiulei on 2015-07-27.
@@ -28,6 +36,11 @@ public class TextStyleItem implements ISpannable {
     private static final float DEFAULT_ALPHA = 0.20F;
 
 
+    @IntDef({Typeface.NORMAL, Typeface.BOLD, Typeface.BOLD_ITALIC, Typeface.ITALIC})
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface TypeFaceStyle {
+    }
+
     public interface OnClickListener {
         void onClick(String clickedText);
     }
@@ -36,25 +49,25 @@ public class TextStyleItem implements ISpannable {
         void onLongClick(String clickedText);
     }
 
-    private String text;
-    private int textSize;// 字体大小
-    private int textColor = 0;// 字体颜色
-    private float highlightAlpha = DEFAULT_ALPHA; // 按下的颜色
-    private int backgroundColor;// 背景颜色
-    private int backgroundColorRes;// 背景颜色
-    private int typeFaceStyle = 0; // 样式
+    protected final String text;
+    protected int textSize = 0;// 字体大小
+    protected int textColor = 0;// 字体颜色
+    protected float highlightAlpha = DEFAULT_ALPHA; // 按下的颜色
+    protected int backgroundColor;// 背景颜色
+    protected int backgroundColorRes;// 背景颜色
+    protected int typeFaceStyle = Typeface.NORMAL; // 样式
 
-    private int iconRes;
-    private Drawable iconDrawable;
-    private Bitmap iconBitmap;
+    protected int iconRes;
+    protected Drawable iconDrawable;
+    protected Bitmap iconBitmap;
 
-    private boolean underLined = false; // 下划线
-    private boolean strikethrough = false; // 中划线
-    private boolean superscript = false; // 上坐标
-    private boolean subscript = false;// 下坐标
+    protected boolean underLined = false; // 下划线
+    protected boolean strikethrough = false; // 中划线
+    protected boolean superscript = false; // 上坐标
+    protected boolean subscript = false;// 下坐标
 
-    private OnClickListener clickListener; // 点击事件
-    private OnLongClickListener longClickListener;// 长按事件
+    protected OnClickListener clickListener; // 点击事件
+    protected OnLongClickListener longClickListener;// 长按事件
 
     public TextStyleItem(String text) {
         this.text = text;
@@ -82,7 +95,7 @@ public class TextStyleItem implements ISpannable {
         return this;
     }
 
-    public TextStyleItem setBackgroundColorRes(int backgroundColorRes) {
+    public TextStyleItem setBackgroundColorRes(@ColorRes int backgroundColorRes) {
         this.backgroundColorRes = backgroundColorRes;
         return this;
     }
@@ -117,12 +130,7 @@ public class TextStyleItem implements ISpannable {
         return this;
     }
 
-    public TextStyleItem setText(String text) {
-        this.text = text;
-        return this;
-    }
-
-    public TextStyleItem setTextColor(int textColor) {
+    public TextStyleItem setTextColor(@ColorInt int textColor) {
         this.textColor = textColor;
         return this;
     }
@@ -132,7 +140,7 @@ public class TextStyleItem implements ISpannable {
         return this;
     }
 
-    public TextStyleItem setTypeFaceStyle(int typeFaceStyle) {
+    public TextStyleItem setTypeFaceStyle(@TypeFaceStyle int typeFaceStyle) {
         this.typeFaceStyle = typeFaceStyle;
         return this;
     }
@@ -142,7 +150,7 @@ public class TextStyleItem implements ISpannable {
         return this;
     }
 
-    public TextStyleItem setIconRes(int iconRes) {
+    public TextStyleItem setIconRes(@DrawableRes int iconRes) {
         this.iconRes = iconRes;
         return this;
     }
@@ -189,9 +197,7 @@ public class TextStyleItem implements ISpannable {
         }
 
         // style
-        if (typeFaceStyle != 0) {
-            spannableString.setSpan(new StyleSpan(typeFaceStyle), 0, length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        }
+        spannableString.setSpan(new StyleSpan(typeFaceStyle), 0, length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         // background color
         if (backgroundColor == 0 && backgroundColorRes != 0) {
