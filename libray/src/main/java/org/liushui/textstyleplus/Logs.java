@@ -8,14 +8,14 @@ import android.util.Log;
  */
 public class Logs {
 
-    static final String TAG = "TEXTSTYLEPLUS";
+    static final String TAG = "TextStylePlus";
     static boolean debug = true;
 
     public static void debug(boolean debug) {
         Logs.debug = debug;
     }
 
-    public void i(String msg, Object... args) {
+    public static void i(String msg, Object... args) {
         if (debug) {
             if (args != null && args.length > 0) {
                 msg = String.format(msg, args);

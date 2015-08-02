@@ -6,4 +6,9 @@
 		<!-- Customize your theme here. -->
 	</style>
 
+	<style name="TestStyle">
+		<item name="android:textSize">20sp</item>
+		<item name="android:textColor">#00afaa</item>
+		<item name="android:background">#ccafaa</item>
+	</style>
 </resources>

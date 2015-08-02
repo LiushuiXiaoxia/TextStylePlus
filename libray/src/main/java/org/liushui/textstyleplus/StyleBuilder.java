@@ -1,5 +1,6 @@
 package org.liushui.textstyleplus;
 
+import android.content.Context;
 import android.text.SpannableStringBuilder;
 import android.text.method.MovementMethod;
 import android.widget.TextView;
@@ -27,20 +28,30 @@ public class StyleBuilder {
         return this;
     }
 
+    public StyleBuilder text(String text) {
+        items.add(new TextStyleItem(text));
+
+        return this;
+    }
+
     public StyleBuilder newLine() {
-        items.add(new TextStyleItem("\n"));
+        text("\n");
 
         return this;
     }
 
     public void show(TextView textView) {
+        Context context = textView.getContext();
+
         for (ISpannable item : items) {
-            builder.append(item.makeSpannableString(textView.getContext()));
+            builder.append(item.makeSpannableString(context));
         }
 
         textView.setText(builder);
 
         addLinkMovementMethod(textView);
+
+        Logs.i("text = " + textView.getText());
     }
 
     /**
