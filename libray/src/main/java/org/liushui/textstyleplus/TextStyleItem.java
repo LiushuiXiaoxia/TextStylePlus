@@ -1,12 +1,18 @@
 package org.liushui.textstyleplus;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.PixelFormat;
+import android.graphics.drawable.Drawable;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.AbsoluteSizeSpan;
 import android.text.style.BackgroundColorSpan;
 import android.text.style.ForegroundColorSpan;
+import android.text.style.ImageSpan;
 import android.text.style.StrikethroughSpan;
 import android.text.style.StyleSpan;
 import android.text.style.SubscriptSpan;
@@ -37,6 +43,10 @@ public class TextStyleItem implements ISpannable {
     private int backgroundColor;// 背景颜色
     private int backgroundColorRes;// 背景颜色
     private int typeFaceStyle = 0; // 样式
+
+    private int iconRes;
+    private Drawable iconDrawable;
+    private Bitmap iconBitmap;
 
     private boolean underLined = false; // 下划线
     private boolean strikethrough = false; // 中划线
@@ -132,6 +142,21 @@ public class TextStyleItem implements ISpannable {
         return this;
     }
 
+    public TextStyleItem setIconRes(int iconRes) {
+        this.iconRes = iconRes;
+        return this;
+    }
+
+    public TextStyleItem setIconDrawable(Drawable iconDrawable) {
+        this.iconDrawable = iconDrawable;
+        return this;
+    }
+
+    public TextStyleItem setIconBitmap(Bitmap iconBitmap) {
+        this.iconBitmap = iconBitmap;
+        return this;
+    }
+
     @Override
     public SpannableString makeSpannableString(Context context) {
         SpannableString spannableString = new SpannableString(text);
@@ -184,6 +209,24 @@ public class TextStyleItem implements ISpannable {
         // textSize
         if (textSize != 0) {
             spannableString.setSpan(new AbsoluteSizeSpan(textSize), 0, length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+
+        // image
+        if (iconBitmap == null && iconRes != 0) {
+            iconBitmap = BitmapFactory.decodeResource(context.getResources(), iconRes);
+        }
+        if (iconBitmap == null && iconDrawable != null) {
+            boolean isOpaque = iconDrawable.getOpacity() != PixelFormat.OPAQUE;
+            Bitmap.Config config = isOpaque ? Bitmap.Config.ARGB_8888 : Bitmap.Config.RGB_565;
+            int width = iconDrawable.getIntrinsicWidth();
+            int height = iconDrawable.getIntrinsicHeight();
+            iconBitmap = Bitmap.createBitmap(width, height, config);
+            Canvas canvas = new Canvas(iconBitmap);
+            iconDrawable.setBounds(0, 0, width, height);
+            iconDrawable.draw(canvas);
+        }
+        if (iconBitmap != null) {
+            spannableString.setSpan(new ImageSpan(iconBitmap), 0, length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
 
         return spannableString;

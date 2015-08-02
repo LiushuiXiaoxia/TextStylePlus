@@ -1,5 +1,6 @@
 package liushuibufuxiaoxia.textstyleplus;
 
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -74,6 +75,10 @@ public class MainActivity extends AppCompatActivity {
                 )
                 .newLine()
                 .addStyleItem(new TextStyleItem("Style").setTypeFaceStyle(Typeface.BOLD))
+                .newLine()
+                .addStyleItem(new TextStyleItem("image").setIconRes(R.drawable.ic1))
+                .addStyleItem(new TextStyleItem("image").setIconDrawable(getResources().getDrawable(R.drawable.ic2)))
+                .addStyleItem(new TextStyleItem("image").setIconBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ic3)))
                 .newLine()
                 .show(textView);
     }
