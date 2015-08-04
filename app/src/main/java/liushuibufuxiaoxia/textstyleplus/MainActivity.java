@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.liushui.textstyleplus.ImageStytleItem;
 import org.liushui.textstyleplus.StyleBuilder;
 import org.liushui.textstyleplus.TextStyleItem;
 
@@ -78,7 +79,25 @@ public class MainActivity extends AppCompatActivity {
                 .newLine()
                 .addStyleItem(new TextStyleItem("image").setIconRes(R.drawable.ic1))
                 .addStyleItem(new TextStyleItem("image").setIconDrawable(getResources().getDrawable(R.drawable.ic2)))
-                .addStyleItem(new TextStyleItem("image").setIconBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ic3)))
+                .addStyleItem(
+                        new TextStyleItem("image")
+                                .setIconBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ic3))
+                )
+                .newLine()
+                .text("流水不腐")
+                .addStyleItem(
+                        new ImageStytleItem("流水不腐")
+                                .setImageRes(R.drawable.image_drawable)
+                                .setTextColor(Color.GREEN)
+//                                .setTextSize(Utils.dip2px(this, 30))
+                )
+                .newLine()
+                .text("abcdefghijklmn")
+                .addStyleItem(
+                        new ImageStytleItem("abcdefghijklmn")
+                                .setImageRes(R.drawable.ic_launcher)
+                                .setTextColor(Color.WHITE)
+                )
                 .newLine()
                 .show(textView);
     }
