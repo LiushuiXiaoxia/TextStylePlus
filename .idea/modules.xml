@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/TextStylePlus.iml" filepath="$PROJECT_DIR$/TextStylePlus.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/libray/libray.iml" filepath="$PROJECT_DIR$/libray/libray.iml" />
+      <module fileurl="file://$PROJECT_DIR$/qqcomment/qqcomment.iml" filepath="$PROJECT_DIR$/qqcomment/qqcomment.iml" />
     </modules>
   </component>
 </project>

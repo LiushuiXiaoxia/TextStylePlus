@@ -1,1 +1,1 @@
-include ':app', ':libray'
+include ':app', ':libray', ':qqcomment'

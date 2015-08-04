@@ -11,6 +11,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/libray" />
+            <option value="$PROJECT_DIR$/qqcomment" />
           </set>
         </option>
       </GradleProjectSettings>
