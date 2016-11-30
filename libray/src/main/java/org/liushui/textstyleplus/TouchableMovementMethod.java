@@ -24,10 +24,10 @@ import android.view.HapticFeedbackConstants;
 import android.view.MotionEvent;
 import android.widget.TextView;
 
-public class TouchableMovementMethod extends LinkMovementMethod {
+class TouchableMovementMethod extends LinkMovementMethod {
 
     private static TouchableMovementMethod sInstance;
-    public static boolean touched = false;
+    static boolean touched = false;
 
     public static MovementMethod getInstance() {
         if (sInstance == null) {

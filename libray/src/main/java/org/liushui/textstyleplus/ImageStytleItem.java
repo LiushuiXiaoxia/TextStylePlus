@@ -8,6 +8,9 @@ import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.ColorInt;
+import android.support.annotation.ColorRes;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -17,56 +20,61 @@ import android.text.style.ImageSpan;
  * ImageSytemItem <br/>
  * Created by xiaqiulei on 2015-07-28.
  */
-public class ImageStytleItem extends TextStyleItem {
+class ImageStytleItem extends TextStyleItem {
 
+    @ColorInt
     private int imageColor;
+    @ColorRes
     private int imageColorRes;
 
+    @DrawableRes
     private int imageRes;
     private Bitmap imageBitmap;
     private Drawable imageDrawable;
 
+    // 如果传入的不是图片，如color，则需要传入显示的大小
     private int width, height;
 
-    public ImageStytleItem(String text) {
-        super(text);
-    }
+    ImageStytleItem(String text,
+                    int textSize,
+                    int textColor,
+                    float highlightAlpha,
+                    int backgroundColor,
+                    int backgroundColorRes,
+                    int typeFaceStyle,
+                    int iconRes,
+                    Drawable iconDrawable,
+                    Bitmap iconBitmap,
+                    boolean underLined,
+                    boolean strikethrough,
+                    boolean superscript,
+                    boolean subscript,
+                    OnClickListener clickListener,
+                    OnLongClickListener longClickListener,
+                    int imageColor,
+                    int imageColorRes,
+                    int imageRes,
+                    Bitmap imageBitmap,
+                    Drawable imageDrawable,
+                    int width,
+                    int height) {
 
-    public ImageStytleItem setImageRes(int imageRes) {
-        this.imageRes = imageRes;
-        return this;
-    }
+        super(text, textSize, textColor, highlightAlpha,
+                backgroundColor, backgroundColorRes,
+                typeFaceStyle, iconRes, iconDrawable,
+                iconBitmap, underLined, strikethrough,
+                superscript, subscript, clickListener,
+                longClickListener);
 
-    public ImageStytleItem setImageDrawable(Drawable imageDrawable) {
-        this.imageDrawable = imageDrawable;
-        return this;
-    }
-
-    public ImageStytleItem setImageBitmap(Bitmap imageBitmap) {
-        this.imageBitmap = imageBitmap;
-        return this;
-    }
-
-    public ImageStytleItem setImageColor(int imageColor) {
         this.imageColor = imageColor;
-        return this;
-    }
-
-    public ImageStytleItem setImageColorRes(int imageColorRes) {
         this.imageColorRes = imageColorRes;
-        return this;
-    }
-
-    /**
-     * 如果传入的不是图片，如color，则需要传入显示的大小
-     *
-     * @param width
-     * @param height
-     */
-    public void setSize(int width, int height) {
+        this.imageRes = imageRes;
+        this.imageBitmap = imageBitmap;
+        this.imageDrawable = imageDrawable;
         this.width = width;
         this.height = height;
     }
+
 
     @Override
     public SpannableString makeSpannableString(Context context) {

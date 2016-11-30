@@ -10,7 +10,6 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
-import android.support.annotation.IntDef;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -24,9 +23,6 @@ import android.text.style.SubscriptSpan;
 import android.text.style.SuperscriptSpan;
 import android.text.style.UnderlineSpan;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-
 /**
  * StyleItem <br/>
  * Created by xiaqiulei on 2015-07-27.
@@ -34,12 +30,6 @@ import java.lang.annotation.RetentionPolicy;
 public class TextStyleItem implements ISpannable {
 
     private static final float DEFAULT_ALPHA = 0.20F;
-
-
-    @IntDef({Typeface.NORMAL, Typeface.BOLD, Typeface.BOLD_ITALIC, Typeface.ITALIC})
-    @Retention(RetentionPolicy.SOURCE)
-    public @interface TypeFaceStyle {
-    }
 
     public interface OnClickListener {
         void onClick(String clickedText);
@@ -49,120 +39,62 @@ public class TextStyleItem implements ISpannable {
         void onLongClick(String clickedText);
     }
 
-    protected final String text;
-    protected int textSize = 0;// 字体大小
-    protected int textColor = 0;// 字体颜色
-    protected float highlightAlpha = DEFAULT_ALPHA; // 按下的颜色
-    protected int backgroundColor;// 背景颜色
-    protected int backgroundColorRes;// 背景颜色
-    protected int typeFaceStyle = Typeface.NORMAL; // 样式
+    final String text;
+    private int textSize = 0; // 字体大小
+    @ColorInt
+    int textColor = 0; // 字体颜色
+    private float highlightAlpha = DEFAULT_ALPHA; // 按下的颜色
+    @ColorInt
+    private int backgroundColor; // 背景颜色
+    @ColorRes
+    private int backgroundColorRes; // 背景颜色
+    @TypeFaceStyle
+    private int typeFaceStyle = Typeface.NORMAL; // 样式
+    @DrawableRes
+    private int iconRes;
+    private Drawable iconDrawable;
+    private Bitmap iconBitmap;
 
-    protected int iconRes;
-    protected Drawable iconDrawable;
-    protected Bitmap iconBitmap;
+    private boolean underLined = false; // 下划线
+    private boolean strikethrough = false; // 中划线
+    private boolean superscript = false; // 上坐标
+    private boolean subscript = false; // 下坐标
 
-    protected boolean underLined = false; // 下划线
-    protected boolean strikethrough = false; // 中划线
-    protected boolean superscript = false; // 上坐标
-    protected boolean subscript = false;// 下坐标
+    OnClickListener clickListener; // 点击事件
+    OnLongClickListener longClickListener; // 长按事件
 
-    protected OnClickListener clickListener; // 点击事件
-    protected OnLongClickListener longClickListener;// 长按事件
-
-    public TextStyleItem(String text) {
+    TextStyleItem(String text,
+                  int textSize,
+                  int textColor,
+                  float highlightAlpha,
+                  int backgroundColor,
+                  int backgroundColorRes,
+                  int typeFaceStyle,
+                  int iconRes,
+                  Drawable iconDrawable,
+                  Bitmap iconBitmap,
+                  boolean underLined,
+                  boolean strikethrough,
+                  boolean superscript,
+                  boolean subscript,
+                  OnClickListener clickListener,
+                  OnLongClickListener longClickListener) {
         this.text = text;
-    }
-
-    public int getTextColor() {
-        return textColor;
-    }
-
-    public OnClickListener getClickListener() {
-        return clickListener;
-    }
-
-    public OnLongClickListener getLongClickListener() {
-        return longClickListener;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public TextStyleItem setBackgroundColor(int backgroundColor) {
-        this.backgroundColor = backgroundColor;
-
-        return this;
-    }
-
-    public TextStyleItem setBackgroundColorRes(@ColorRes int backgroundColorRes) {
-        this.backgroundColorRes = backgroundColorRes;
-        return this;
-    }
-
-    public TextStyleItem setClickListener(OnClickListener clickListener) {
-        this.clickListener = clickListener;
-        return this;
-    }
-
-    public TextStyleItem setHighlightAlpha(float highlightAlpha) {
-        this.highlightAlpha = highlightAlpha;
-        return this;
-    }
-
-    public TextStyleItem setLongClickListener(OnLongClickListener longClickListener) {
-        this.longClickListener = longClickListener;
-        return this;
-    }
-
-    public TextStyleItem setStrikethrough(boolean strikethrough) {
-        this.strikethrough = strikethrough;
-        return this;
-    }
-
-    public TextStyleItem setSubscript(boolean subscript) {
-        this.subscript = subscript;
-        return this;
-    }
-
-    public TextStyleItem setSuperscript(boolean superscript) {
-        this.superscript = superscript;
-        return this;
-    }
-
-    public TextStyleItem setTextColor(@ColorInt int textColor) {
-        this.textColor = textColor;
-        return this;
-    }
-
-    public TextStyleItem setTextSize(int textSize) {
         this.textSize = textSize;
-        return this;
-    }
-
-    public TextStyleItem setTypeFaceStyle(@TypeFaceStyle int typeFaceStyle) {
+        this.textColor = textColor;
+        this.highlightAlpha = highlightAlpha;
+        this.backgroundColor = backgroundColor;
+        this.backgroundColorRes = backgroundColorRes;
         this.typeFaceStyle = typeFaceStyle;
-        return this;
-    }
-
-    public TextStyleItem setUnderLined(boolean underLined) {
-        this.underLined = underLined;
-        return this;
-    }
-
-    public TextStyleItem setIconRes(@DrawableRes int iconRes) {
         this.iconRes = iconRes;
-        return this;
-    }
-
-    public TextStyleItem setIconDrawable(Drawable iconDrawable) {
         this.iconDrawable = iconDrawable;
-        return this;
-    }
-
-    public TextStyleItem setIconBitmap(Bitmap iconBitmap) {
         this.iconBitmap = iconBitmap;
-        return this;
+        this.underLined = underLined;
+        this.strikethrough = strikethrough;
+        this.superscript = superscript;
+        this.subscript = subscript;
+        this.clickListener = clickListener;
+        this.longClickListener = longClickListener;
     }
 
     @Override

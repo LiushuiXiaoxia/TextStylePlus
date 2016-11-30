@@ -8,8 +8,9 @@ import android.util.Log;
  */
 public class Logs {
 
-    static final String TAG = "TextStylePlus";
-    static boolean debug = true;
+    private static final String TAG = "TextStylePlus";
+
+    private static boolean debug = BuildConfig.DEBUG;
 
     public static void debug(boolean debug) {
         Logs.debug = debug;

@@ -45,17 +45,25 @@ public class SecondFragment extends Fragment {
 
         StyleBuilder styleBuilder = new StyleBuilder();
         for (String name : names) {
-            styleBuilder.addStyleItem(
-                    new TextStyleItem(name).setTextColor(color).setClickListener(new TextStyleItem.OnClickListener() {
+            styleBuilder.addTextStyle(name)
+                    .setTextColor(color)
+                    .setClickListener(new TextStyleItem.OnClickListener() {
                         @Override
                         public void onClick(String clickedText) {
                             Toast.makeText(SecondFragment.this.getActivity(), "text = " + clickedText, Toast.LENGTH_SHORT).show();
                         }
-                    }))
-                    .text("回复:")
-                    .addStyleItem(new TextStyleItem(host).setTextColor(color))
-                    .addStyleItem(new TextStyleItem("icon").setIconRes(R.drawable.ic_launcher))
-                    .newLine();
+                    })
+                    .commit()
+
+                    .addText("回复:")
+
+                    .addTextStyle(host).setTextColor(color).commit()
+                    .addTextStyle(comment).setTextColor(color).commit()
+
+                    .addImageStyle("icon").setIconRes(R.drawable.ic_launcher)
+                    .commit()
+
+                    .addNewLine();
         }
         styleBuilder.show(textview);
     }

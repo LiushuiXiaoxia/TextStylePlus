@@ -28,16 +28,21 @@ public class StyleBuilder {
         return this;
     }
 
-    public StyleBuilder text(String text) {
-        items.add(new TextStyleItem(text));
-
-        return this;
+    public TextStyleBuilder addTextStyle(String text) {
+        return new TextStyleBuilder(this, text);
     }
 
-    public StyleBuilder newLine() {
-        text("\n");
+    public ImageStyleBuilder addImageStyle(String text) {
+        return new ImageStyleBuilder(this, text);
+    }
 
-        return this;
+    public StyleBuilder addText(String text) {
+
+        return addTextStyle(text).commit();
+    }
+
+    public StyleBuilder addNewLine() {
+        return addText("\n");
     }
 
     public void show(TextView textView) {

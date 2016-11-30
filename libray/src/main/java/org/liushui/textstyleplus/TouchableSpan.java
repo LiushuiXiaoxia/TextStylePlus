@@ -23,7 +23,7 @@ import android.text.style.ClickableSpan;
 import android.util.TypedValue;
 import android.view.View;
 
-public class TouchableSpan extends ClickableSpan {
+class TouchableSpan extends ClickableSpan {
 
     protected static TypedArray obtainStyledAttrsFromThemeAttr(Context context, int themeAttr, int[] styleAttrs) {
         // Need to get resource id of style pointed to from the theme attr
@@ -41,16 +41,14 @@ public class TouchableSpan extends ClickableSpan {
 
     /**
      * Construct new TouchableSpan using the styleItem
-     *
-     * @param textStyleItem
      */
-    public TouchableSpan(Context context, TextStyleItem textStyleItem) {
+    TouchableSpan(Context context, TextStyleItem textStyleItem) {
         this.textStyleItem = textStyleItem;
 
-        if (textStyleItem.getTextColor() == 0) {
+        if (textStyleItem.textColor == 0) {
             this.textColor = getDefaultColor(context);
         } else {
-            this.textColor = textStyleItem.getTextColor();
+            this.textColor = textStyleItem.textColor;
         }
     }
 
@@ -76,8 +74,8 @@ public class TouchableSpan extends ClickableSpan {
     public void onClick(View widget) {
 
         // handle the click
-        if (textStyleItem.getClickListener() != null) {
-            textStyleItem.getClickListener().onClick(textStyleItem.getText());
+        if (textStyleItem.clickListener != null) {
+            textStyleItem.clickListener.onClick(textStyleItem.text);
         }
 
         new Handler().postDelayed(new Runnable() {
@@ -93,11 +91,11 @@ public class TouchableSpan extends ClickableSpan {
      *
      * @param widget TextView containing the touchable span
      */
-    public void onLongClick(View widget) {
+    void onLongClick(View widget) {
 
         // handle the long click
-        if (textStyleItem.getLongClickListener() != null) {
-            textStyleItem.getLongClickListener().onLongClick(textStyleItem.getText());
+        if (textStyleItem.longClickListener != null) {
+            textStyleItem.longClickListener.onLongClick(textStyleItem.text);
         }
 
         new Handler().postDelayed(new Runnable() {
@@ -140,10 +138,8 @@ public class TouchableSpan extends ClickableSpan {
 
     /**
      * Specifiy whether or not the styleItem is currently touched
-     *
-     * @param touched
      */
-    public void setTouched(boolean touched) {
+    void setTouched(boolean touched) {
         this.touched = touched;
     }
 }
