@@ -30,9 +30,10 @@ dependencies {
 }
 ```
 
-
-
 # Demo
+
+![Demo](image/device-2016-11-30-233151.png)
+![Demo](image/device-2016-11-30-233217.png)
 
 ```java
 public class MainActivity extends AppCompatActivity {
@@ -45,93 +46,101 @@ public class MainActivity extends AppCompatActivity {
 
         TextView textView = (TextView) findViewById(R.id.textview);
 
-        TextStyleItem one = new TextStyleItem("http://www.baidu.com")
-                .setTextColor(Color.parseColor("#f00f0f"))
-                .setClickListener(new TextStyleItem.OnClickListener() {
-                    @Override
-                    public void onClick(String clickedText) {
-                        Toast.makeText(MainActivity.this, "onClick", Toast.LENGTH_SHORT).show();
-                    }
-                });
 
-
-        TextStyleItem two = new TextStyleItem("Liushuixiaoxia")
-                .setTextColor(Color.parseColor("#f0aa0f"))
-                .setLongClickListener(new TextStyleItem.OnLongClickListener() {
-                    @Override
-                    public void onLongClick(String clickedText) {
-                        Toast.makeText(MainActivity.this, "onLongClick", Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-        TextStyleItem three = new TextStyleItem("TestBackground")
-                .setTextColor(Color.WHITE)
-                .setBackgroundColor(Color.BLACK)
-                .setTextSize(Utils.dip2px(this, 20))
-                .setLongClickListener(new TextStyleItem.OnLongClickListener() {
-                    @Override
-                    public void onLongClick(String clickedText) {
-                        Toast.makeText(MainActivity.this, "onLongClick", Toast.LENGTH_SHORT).show();
-                    }
-                });
-
+        int textColor = Color.parseColor("#ff6000");
         new StyleBuilder()
-                .addStyleItem(one)
-                .newLine()
-                .addStyleItem(two)
-                .newLine()
-                .addStyleItem(three)
-                .newLine()
-                .addStyleItem(new TextStyleItem("http://www.google.com").setUnderLined(true))
-                .newLine()
-                .addStyleItem(new TextStyleItem("http://www.google.com").setStrikethrough(true))
-                .newLine()
-                .text("TEST")
-                .addStyleItem(
-                        new TextStyleItem("subscript")
-                                .setSubscript(true)
-                                .setTextColor(Color.parseColor("#f00f0f"))
-                )
-                .addStyleItem(
-                        new TextStyleItem("superscript")
-                                .setSuperscript(true)
-                                .setTextColor(Color.parseColor("#f00f0f"))
-                )
-                .newLine()
-                .addStyleItem(new TextStyleItem("Style").setTypeFaceStyle(Typeface.BOLD))
-                .newLine()
-                .addStyleItem(new TextStyleItem("image").setIconRes(R.drawable.ic1))
-                .addStyleItem(new TextStyleItem("image").setIconDrawable(getResources().getDrawable(R.drawable.ic2)))
-                .addStyleItem(
-                        new TextStyleItem("image")
-                                .setIconBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ic3))
-                )
-                .newLine()
-                .text("流水不腐")
-                .addStyleItem(
-                        new ImageStytleItem("流水不腐")
-                                .setImageRes(R.drawable.image_drawable)
-                                .setTextColor(Color.GREEN)
-//                                .setTextSize(Utils.dip2px(this, 30))
-                )
-                .newLine()
-                .text("abcdefghijklmn")
-                .addStyleItem(
-                        new ImageStytleItem("abcdefghijklmn")
-                                .setImageRes(R.drawable.ic_launcher)
-                                .setTextColor(Color.WHITE)
-                )
-                .newLine()
+                .addTextStyle("Test click.").textColor(Color.parseColor("#ff0000"))
+                .click(new ClickListener() {
+                    @Override
+                    public void click(String text) {
+                        Toast.makeText(MainActivity.this, "click", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .commit().newLine().newLine()
+
+                .addTextStyle("Test long click.").textColor(Color.parseColor("#ff0000"))
+                .longClick(new LongClickListener() {
+                    @Override
+                    public void longClick(String text) {
+                        Toast.makeText(MainActivity.this, "longClick", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .commit().newLine().newLine()
+
+                .addTextStyle("Test background.").textColor(Color.GREEN).backgroundColor(Color.BLUE)
+                .textSize(Utils.dip2px(this, 20))
+                .longClick(new LongClickListener() {
+                    @Override
+                    public void longClick(String text) {
+                        Toast.makeText(MainActivity.this, "longClick", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .commit().newLine().newLine()
+
+                .addTextStyle("Test under line. http://www.google.com").underLined(true).textColor(Color.BLUE)
+                .commit().newLine().newLine()
+
+                .addTextStyle("Test strikethrough. http://www.google.com").strikethrough(true).textColor(Color.BLUE)
+                .commit().newLine().newLine()
+
+                .addTextStyle("Test subscript.").subscript(true).textColor(Color.GREEN)
+                .commit().newLine().newLine()
+
+                .addTextStyle("Test superscript.").superscript(true).textColor(Color.GREEN)
+                .commit().newLine().newLine()
+
+                .addTextStyle("Test type face.").typeFaceStyle(Typeface.BOLD).textColor(Color.BLACK)
+                .commit().newLine().newLine()
+
+                .text("Test image1.")
+                .addTextStyle("image").iconRes(R.drawable.ic1)
+                .commit().newLine().newLine()
+
+                .text("Test image2.")
+                .addTextStyle("image").iconDrawable(getResources().getDrawable(R.drawable.ic2))
+                .commit().newLine().newLine()
+
+                .text("Test image3.")
+                .addTextStyle("image").iconBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ic3))
+                .commit().newLine().newLine()
+
+                .text("Test text and image.")
+                .addImageStyle("流水不腐").imageRes(R.drawable.image_drawable).textColor(Color.BLUE)
+                .commit().newLine().newLine()
+
+                .addImageStyle("Test text and image.").imageRes(R.drawable.ic_launcher).textColor(Color.BLACK)
+                .commit().newLine().newLine()
+
+                .addTextStyle("call").iconRes(R.drawable.ic_call).commit()
+                .text("  夏先生  ")
+                .addTextStyle("13812345678").underLined(true).textColor(Color.BLUE)
+                .commit()
+                .newLine().newLine()
+
+                .text("可口可乐   x1 ").addTextStyle(" ￥4").textColor(Color.RED).commit().newLine()
+                .text("鱼香肉丝   x1 ").addTextStyle(" ￥10").textColor(Color.RED).commit().newLine()
+                .text("米饭          x1 ").addTextStyle(" ￥2").textColor(Color.RED).commit().newLine()
+                .newLine().newLine()
+
+                .addImageStyle(" 水果 ").imageRes(R.drawable.tag_bg).textColor(Color.WHITE).commit()
+                .text(" ")
+                .addImageStyle(" 肉类 ").imageRes(R.drawable.tag_bg).textColor(Color.WHITE).commit()
+                .text(" ")
+                .addImageStyle(" 蔬菜 ").imageRes(R.drawable.tag_bg).textColor(Color.WHITE).commit()
+                .newLine().newLine()
+
+
+                .addTextStyle("黄金咸鸭蛋").textSize(Utils.dip2px(this, 16)).textColor(Color.BLACK).commit().newLine()
+                .addTextStyle("4.7分").textColor(textColor).commit()
+                .addTextStyle("     已售1000份").textColor(Color.GRAY).commit().newLine()
+                .addTextStyle("￥").textSize(Utils.dip2px(this, 12)).textColor(textColor).commit()
+                .addTextStyle("100 ").textSize(Utils.dip2px(this, 14)).textColor(textColor).commit()
+                .addTextStyle(" 110 ").textSize(Utils.dip2px(this, 13)).strikethrough(true).textColor(Color.GRAY)
+                .commit().newLine()
+
+
                 .show(textView);
+
     }
 }
 ```
-
-![Demo](image/device-2015-08-02-154539.png)
-
-
-![Demo](image/device-2015-08-02-154611.png)
-
-![Icon](image/device-2015-08-03-001419.png)
-
-![Drawable](image/device-2015-08-04-110307.png)

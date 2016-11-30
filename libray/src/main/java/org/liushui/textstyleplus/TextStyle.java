@@ -156,7 +156,7 @@ class TextStyle implements ISpannable {
             iconDrawable.draw(canvas);
         }
         if (iconBitmap != null) {
-            spannableString.setSpan(new ImageSpan(iconBitmap), 0, length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            spannableString.setSpan(new ImageSpan(context, iconBitmap), 0, length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
 
         return spannableString;

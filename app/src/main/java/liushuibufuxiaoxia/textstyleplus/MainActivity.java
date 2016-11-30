@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
         TextView textView = (TextView) findViewById(R.id.textview);
 
 
+        int textColor = Color.parseColor("#ff6000");
         new StyleBuilder()
                 .addTextStyle("Test click.").textColor(Color.parseColor("#ff0000"))
                 .click(new ClickListener() {
@@ -86,6 +87,35 @@ public class MainActivity extends AppCompatActivity {
                 .addImageStyle("Test text and image.").imageRes(R.drawable.ic_launcher).textColor(Color.BLACK)
                 .commit().newLine().newLine()
 
+                .addTextStyle("call").iconRes(R.drawable.ic_call).commit()
+                .text("  夏先生  ")
+                .addTextStyle("13812345678").underLined(true).textColor(Color.BLUE)
+                .commit()
+                .newLine().newLine()
+
+                .text("可口可乐   x1 ").addTextStyle(" ￥4").textColor(Color.RED).commit().newLine()
+                .text("鱼香肉丝   x1 ").addTextStyle(" ￥10").textColor(Color.RED).commit().newLine()
+                .text("米饭          x1 ").addTextStyle(" ￥2").textColor(Color.RED).commit().newLine()
+                .newLine().newLine()
+
+                .addImageStyle(" 水果 ").imageRes(R.drawable.tag_bg).textColor(Color.WHITE).commit()
+                .text(" ")
+                .addImageStyle(" 肉类 ").imageRes(R.drawable.tag_bg).textColor(Color.WHITE).commit()
+                .text(" ")
+                .addImageStyle(" 蔬菜 ").imageRes(R.drawable.tag_bg).textColor(Color.WHITE).commit()
+                .newLine().newLine()
+
+
+                .addTextStyle("黄金咸鸭蛋").textSize(Utils.dip2px(this, 16)).textColor(Color.BLACK).commit().newLine()
+                .addTextStyle("4.7分").textColor(textColor).commit()
+                .addTextStyle("     已售1000份").textColor(Color.GRAY).commit().newLine()
+                .addTextStyle("￥").textSize(Utils.dip2px(this, 12)).textColor(textColor).commit()
+                .addTextStyle("100 ").textSize(Utils.dip2px(this, 14)).textColor(textColor).commit()
+                .addTextStyle(" 110 ").textSize(Utils.dip2px(this, 13)).strikethrough(true).textColor(Color.GRAY)
+                .commit().newLine()
+
+
                 .show(textView);
+
     }
 }
