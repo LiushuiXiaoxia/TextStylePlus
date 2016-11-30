@@ -26,7 +26,7 @@ allprojects {
 
 ```sh
 dependencies {
-    compile 'com.github.LiushuiXiaoxia:TextStylePlus:v0.1'
+    compile 'com.github.LiushuiXiaoxia:TextStylePlus:v0.2'
 }
 ```
 
