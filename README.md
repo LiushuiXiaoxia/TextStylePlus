@@ -1,7 +1,37 @@
 # TextStylePlus
-android textview style
+
+--- 
+
+Android textview style
 
 Ii's like [BabushkaText](https://github.com/quiqueqs/BabushkaText) or [Android-TextView-LinkBuilder](https://github.com/klinker24/Android-TextView-LinkBuilder)
+
+# Gradle集成
+
+[![](https://jitpack.io/v/LiushuiXiaoxia/TextStylePlus.svg)](https://jitpack.io/#LiushuiXiaoxia/TextStylePlus)
+ 
+**Step 1. Add the JitPack repository to your build file**
+
+Add it in your root build.gradle at the end of repositories:
+
+```
+allprojects {
+    repositories {
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
+
+**Step 2. Add the dependency**
+
+```
+dependencies {
+    compile 'com.github.LiushuiXiaoxia:TextStylePlus:v0.1'
+}
+```
+
+
+
 # Demo
 
 ```
