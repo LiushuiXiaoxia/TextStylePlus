@@ -27,17 +27,9 @@ import android.text.style.UnderlineSpan;
  * StyleItem <br/>
  * Created by xiaqiulei on 2015-07-27.
  */
-public class TextStyleItem implements ISpannable {
+class TextStyle implements ISpannable {
 
     private static final float DEFAULT_ALPHA = 0.20F;
-
-    public interface OnClickListener {
-        void onClick(String clickedText);
-    }
-
-    public interface OnLongClickListener {
-        void onLongClick(String clickedText);
-    }
 
     final String text;
     private int textSize = 0; // 字体大小
@@ -60,25 +52,25 @@ public class TextStyleItem implements ISpannable {
     private boolean superscript = false; // 上坐标
     private boolean subscript = false; // 下坐标
 
-    OnClickListener clickListener; // 点击事件
-    OnLongClickListener longClickListener; // 长按事件
+    ClickListener clickListener; // 点击事件
+    LongClickListener longClickListener; // 长按事件
 
-    TextStyleItem(String text,
-                  int textSize,
-                  int textColor,
-                  float highlightAlpha,
-                  int backgroundColor,
-                  int backgroundColorRes,
-                  int typeFaceStyle,
-                  int iconRes,
-                  Drawable iconDrawable,
-                  Bitmap iconBitmap,
-                  boolean underLined,
-                  boolean strikethrough,
-                  boolean superscript,
-                  boolean subscript,
-                  OnClickListener clickListener,
-                  OnLongClickListener longClickListener) {
+    TextStyle(String text,
+              int textSize,
+              int textColor,
+              float highlightAlpha,
+              int backgroundColor,
+              int backgroundColorRes,
+              int typeFaceStyle,
+              int iconRes,
+              Drawable iconDrawable,
+              Bitmap iconBitmap,
+              boolean underLined,
+              boolean strikethrough,
+              boolean superscript,
+              boolean subscript,
+              ClickListener clickListener,
+              LongClickListener longClickListener) {
         this.text = text;
         this.textSize = textSize;
         this.textColor = textColor;

@@ -10,8 +10,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.liushui.textstyleplus.ClickListener;
 import org.liushui.textstyleplus.StyleBuilder;
-import org.liushui.textstyleplus.TextStyleItem;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -46,24 +46,24 @@ public class SecondFragment extends Fragment {
         StyleBuilder styleBuilder = new StyleBuilder();
         for (String name : names) {
             styleBuilder.addTextStyle(name)
-                    .setTextColor(color)
-                    .setClickListener(new TextStyleItem.OnClickListener() {
+                    .textColor(color)
+                    .click(new ClickListener() {
                         @Override
-                        public void onClick(String clickedText) {
-                            Toast.makeText(SecondFragment.this.getActivity(), "text = " + clickedText, Toast.LENGTH_SHORT).show();
+                        public void click(String text) {
+                            Toast.makeText(SecondFragment.this.getActivity(), "text = " + text, Toast.LENGTH_SHORT).show();
                         }
                     })
                     .commit()
 
-                    .addText("回复:")
+                    .text("回复:")
 
-                    .addTextStyle(host).setTextColor(color).commit()
-                    .addTextStyle(comment).setTextColor(color).commit()
+                    .addTextStyle(host).textColor(color).commit()
+                    .addTextStyle(comment).textColor(color).commit()
 
-                    .addImageStyle("icon").setIconRes(R.drawable.ic_launcher)
+                    .addImageStyle("icon").iconRes(R.drawable.ic_launcher)
                     .commit()
 
-                    .addNewLine();
+                    .newLine();
         }
         styleBuilder.show(textview);
     }

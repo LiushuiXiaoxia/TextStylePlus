@@ -22,7 +22,7 @@ public class StyleBuilder {
         builder = new SpannableStringBuilder();
     }
 
-    public StyleBuilder addStyleItem(ISpannable item) {
+    StyleBuilder addStyleItem(ISpannable item) {
         items.add(item);
 
         return this;
@@ -36,13 +36,13 @@ public class StyleBuilder {
         return new ImageStyleBuilder(this, text);
     }
 
-    public StyleBuilder addText(String text) {
+    public StyleBuilder text(String text) {
 
         return addTextStyle(text).commit();
     }
 
-    public StyleBuilder addNewLine() {
-        return addText("\n");
+    public StyleBuilder newLine() {
+        return text("\n");
     }
 
     public void show(TextView textView) {

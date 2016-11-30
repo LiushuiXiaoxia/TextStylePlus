@@ -8,8 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.liushui.textstyleplus.ClickListener;
+import org.liushui.textstyleplus.LongClickListener;
 import org.liushui.textstyleplus.StyleBuilder;
-import org.liushui.textstyleplus.TextStyleItem;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,67 +24,67 @@ public class MainActivity extends AppCompatActivity {
 
 
         new StyleBuilder()
-                .addTextStyle("Test click.").setTextColor(Color.parseColor("#ff0000"))
-                .setClickListener(new TextStyleItem.OnClickListener() {
+                .addTextStyle("Test click.").textColor(Color.parseColor("#ff0000"))
+                .click(new ClickListener() {
                     @Override
-                    public void onClick(String clickedText) {
-                        Toast.makeText(MainActivity.this, "onClick", Toast.LENGTH_SHORT).show();
+                    public void click(String text) {
+                        Toast.makeText(MainActivity.this, "click", Toast.LENGTH_SHORT).show();
                     }
                 })
-                .commit().addNewLine().addNewLine()
+                .commit().newLine().newLine()
 
-                .addTextStyle("Test long click.").setTextColor(Color.parseColor("#ff0000"))
-                .setLongClickListener(new TextStyleItem.OnLongClickListener() {
+                .addTextStyle("Test long click.").textColor(Color.parseColor("#ff0000"))
+                .longClick(new LongClickListener() {
                     @Override
-                    public void onLongClick(String clickedText) {
-                        Toast.makeText(MainActivity.this, "onLongClick", Toast.LENGTH_SHORT).show();
+                    public void longClick(String text) {
+                        Toast.makeText(MainActivity.this, "longClick", Toast.LENGTH_SHORT).show();
                     }
                 })
-                .commit().addNewLine().addNewLine()
+                .commit().newLine().newLine()
 
-                .addTextStyle("Test background.").setTextColor(Color.GREEN).setBackgroundColor(Color.BLUE)
-                .setTextSize(Utils.dip2px(this, 20))
-                .setLongClickListener(new TextStyleItem.OnLongClickListener() {
+                .addTextStyle("Test background.").textColor(Color.GREEN).backgroundColor(Color.BLUE)
+                .textSize(Utils.dip2px(this, 20))
+                .longClick(new LongClickListener() {
                     @Override
-                    public void onLongClick(String clickedText) {
-                        Toast.makeText(MainActivity.this, "onLongClick", Toast.LENGTH_SHORT).show();
+                    public void longClick(String text) {
+                        Toast.makeText(MainActivity.this, "longClick", Toast.LENGTH_SHORT).show();
                     }
                 })
-                .commit().addNewLine().addNewLine()
+                .commit().newLine().newLine()
 
-                .addTextStyle("Test under line. http://www.google.com").setUnderLined(true).setTextColor(Color.BLUE)
-                .commit().addNewLine().addNewLine()
+                .addTextStyle("Test under line. http://www.google.com").underLined(true).textColor(Color.BLUE)
+                .commit().newLine().newLine()
 
-                .addTextStyle("Test strikethrough. http://www.google.com").setStrikethrough(true).setTextColor(Color.BLUE)
-                .commit().addNewLine().addNewLine()
+                .addTextStyle("Test strikethrough. http://www.google.com").strikethrough(true).textColor(Color.BLUE)
+                .commit().newLine().newLine()
 
-                .addTextStyle("Test subscript.").setSubscript(true).setTextColor(Color.GREEN)
-                .commit().addNewLine().addNewLine()
+                .addTextStyle("Test subscript.").subscript(true).textColor(Color.GREEN)
+                .commit().newLine().newLine()
 
-                .addTextStyle("Test superscript.").setSuperscript(true).setTextColor(Color.GREEN)
-                .commit().addNewLine().addNewLine()
+                .addTextStyle("Test superscript.").superscript(true).textColor(Color.GREEN)
+                .commit().newLine().newLine()
 
-                .addTextStyle("Test type face.").setTypeFaceStyle(Typeface.BOLD).setTextColor(Color.BLACK)
-                .commit().addNewLine().addNewLine()
+                .addTextStyle("Test type face.").typeFaceStyle(Typeface.BOLD).textColor(Color.BLACK)
+                .commit().newLine().newLine()
 
-                .addText("Test image1.")
-                .addTextStyle("image").setIconRes(R.drawable.ic1)
-                .commit().addNewLine().addNewLine()
+                .text("Test image1.")
+                .addTextStyle("image").iconRes(R.drawable.ic1)
+                .commit().newLine().newLine()
 
-                .addText("Test image2.")
-                .addTextStyle("image").setIconDrawable(getResources().getDrawable(R.drawable.ic2))
-                .commit().addNewLine().addNewLine()
+                .text("Test image2.")
+                .addTextStyle("image").iconDrawable(getResources().getDrawable(R.drawable.ic2))
+                .commit().newLine().newLine()
 
-                .addText("Test image3.")
-                .addTextStyle("image").setIconBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ic3))
-                .commit().addNewLine().addNewLine()
+                .text("Test image3.")
+                .addTextStyle("image").iconBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ic3))
+                .commit().newLine().newLine()
 
-                .addText("Test text and image.")
-                .addImageStyle("流水不腐").setImageRes(R.drawable.image_drawable).setTextColor(Color.BLUE)
-                .commit().addNewLine().addNewLine()
+                .text("Test text and image.")
+                .addImageStyle("流水不腐").imageRes(R.drawable.image_drawable).textColor(Color.BLUE)
+                .commit().newLine().newLine()
 
-                .addImageStyle("Test text and image.").setImageRes(R.drawable.ic_launcher).setTextColor(Color.BLACK)
-                .commit().addNewLine().addNewLine()
+                .addImageStyle("Test text and image.").imageRes(R.drawable.ic_launcher).textColor(Color.BLACK)
+                .commit().newLine().newLine()
 
                 .show(textView);
     }

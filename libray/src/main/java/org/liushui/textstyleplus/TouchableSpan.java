@@ -35,20 +35,20 @@ class TouchableSpan extends ClickableSpan {
         return context.obtainStyledAttributes(styleResId, styleAttrs);
     }
 
-    private final TextStyleItem textStyleItem;
+    private final TextStyle textStyle;
     public boolean touched = false;
     private int textColor;
 
     /**
      * Construct new TouchableSpan using the styleItem
      */
-    TouchableSpan(Context context, TextStyleItem textStyleItem) {
-        this.textStyleItem = textStyleItem;
+    TouchableSpan(Context context, TextStyle textStyle) {
+        this.textStyle = textStyle;
 
-        if (textStyleItem.textColor == 0) {
+        if (textStyle.textColor == 0) {
             this.textColor = getDefaultColor(context);
         } else {
-            this.textColor = textStyleItem.textColor;
+            this.textColor = textStyle.textColor;
         }
     }
 
@@ -74,8 +74,8 @@ class TouchableSpan extends ClickableSpan {
     public void onClick(View widget) {
 
         // handle the click
-        if (textStyleItem.clickListener != null) {
-            textStyleItem.clickListener.onClick(textStyleItem.text);
+        if (textStyle.clickListener != null) {
+            textStyle.clickListener.click(textStyle.text);
         }
 
         new Handler().postDelayed(new Runnable() {
@@ -94,8 +94,8 @@ class TouchableSpan extends ClickableSpan {
     void onLongClick(View widget) {
 
         // handle the long click
-        if (textStyleItem.longClickListener != null) {
-            textStyleItem.longClickListener.onLongClick(textStyleItem.text);
+        if (textStyle.longClickListener != null) {
+            textStyle.longClickListener.longClick(textStyle.text);
         }
 
         new Handler().postDelayed(new Runnable() {
@@ -118,7 +118,7 @@ class TouchableSpan extends ClickableSpan {
 
         ds.setUnderlineText(false);
         ds.setColor(textColor);
-        // ds.bgColor = touched ? adjustAlpha(textColor, textStyleItem.getHighlightAlpha()) : Color.TRANSPARENT;
+        // ds.bgColor = touched ? adjustAlpha(textColor, textStyle.getHighlightAlpha()) : Color.TRANSPARENT;
     }
 
     /**

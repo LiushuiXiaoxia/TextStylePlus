@@ -20,7 +20,7 @@ import android.text.style.ImageSpan;
  * ImageSytemItem <br/>
  * Created by xiaqiulei on 2015-07-28.
  */
-class ImageStytleItem extends TextStyleItem {
+class ImageStytle extends TextStyle {
 
     @ColorInt
     private int imageColor;
@@ -35,29 +35,29 @@ class ImageStytleItem extends TextStyleItem {
     // 如果传入的不是图片，如color，则需要传入显示的大小
     private int width, height;
 
-    ImageStytleItem(String text,
-                    int textSize,
-                    int textColor,
-                    float highlightAlpha,
-                    int backgroundColor,
-                    int backgroundColorRes,
-                    int typeFaceStyle,
-                    int iconRes,
-                    Drawable iconDrawable,
-                    Bitmap iconBitmap,
-                    boolean underLined,
-                    boolean strikethrough,
-                    boolean superscript,
-                    boolean subscript,
-                    OnClickListener clickListener,
-                    OnLongClickListener longClickListener,
-                    int imageColor,
-                    int imageColorRes,
-                    int imageRes,
-                    Bitmap imageBitmap,
-                    Drawable imageDrawable,
-                    int width,
-                    int height) {
+    ImageStytle(String text,
+                int textSize,
+                int textColor,
+                float highlightAlpha,
+                int backgroundColor,
+                int backgroundColorRes,
+                int typeFaceStyle,
+                int iconRes,
+                Drawable iconDrawable,
+                Bitmap iconBitmap,
+                boolean underLined,
+                boolean strikethrough,
+                boolean superscript,
+                boolean subscript,
+                ClickListener clickListener,
+                LongClickListener longClickListener,
+                int imageColor,
+                int imageColorRes,
+                int imageRes,
+                Bitmap imageBitmap,
+                Drawable imageDrawable,
+                int width,
+                int height) {
 
         super(text, textSize, textColor, highlightAlpha,
                 backgroundColor, backgroundColorRes,
@@ -127,7 +127,7 @@ class ImageStytleItem extends TextStyleItem {
                     // 绘制字体
                     Paint textPaint = new Paint(paint);
                     textPaint.setColor(textColor);
-                    // textPaint.setTextSize(textSize);
+                    // textPaint.textSize(textSize);
                     float newY = y - padding.bottom - (textPaint.getFontMetrics().bottom - textPaint.descent());
                     canvas.drawText(text.subSequence(start, end).toString(), x + padding.left, newY, textPaint);
                 }
