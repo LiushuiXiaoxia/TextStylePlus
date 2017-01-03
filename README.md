@@ -9,6 +9,8 @@ Ii's like [BabushkaText](https://github.com/quiqueqs/BabushkaText) or [Android-T
 # Gradle
 
 [![](https://jitpack.io/v/LiushuiXiaoxia/TextStylePlus.svg)](https://jitpack.io/#LiushuiXiaoxia/TextStylePlus)
+
+[![Build Status](https://travis-ci.org/LiushuiXiaoxia/TextStylePlus.svg?branch=master)](https://travis-ci.org/LiushuiXiaoxia/TextStylePlus)
  
 **Step 1. Add the JitPack repository to your build file**
 
