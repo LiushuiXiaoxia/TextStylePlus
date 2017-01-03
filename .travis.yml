@@ -2,6 +2,9 @@ language: android
 
 sudo: false
 
+jdk:
+  - oraclejdk8
+
 android:
   components:
   - build-tools-25.0.0
@@ -10,4 +13,5 @@ android:
   - extra-android-m2repository
 
 script:
+  - jdk_switcher use oraclejdk8
   - ./gradlew build
