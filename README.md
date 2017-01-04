@@ -6,12 +6,12 @@ Android textview style
 
 Ii's like [BabushkaText](https://github.com/quiqueqs/BabushkaText) or [Android-TextView-LinkBuilder](https://github.com/klinker24/Android-TextView-LinkBuilder)
 
-# Gradle
 
 [![](https://jitpack.io/v/LiushuiXiaoxia/TextStylePlus.svg)](https://jitpack.io/#LiushuiXiaoxia/TextStylePlus)
-
 [![Build Status](https://travis-ci.org/LiushuiXiaoxia/TextStylePlus.svg?branch=master)](https://travis-ci.org/LiushuiXiaoxia/TextStylePlus)
- 
+
+# Gradle
+
 **Step 1. Add the JitPack repository to your build file**
 
 Add it in your root build.gradle at the end of repositories:
